@@ -27,11 +27,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent" uib-collapse="isCollapsed">
-                <ul class="navbar-nav mr-auto" ng-if="sessionS.context.userId === null">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item" ng-class="{'active' : viewName == 'Home'}">
-                        <a class="nav-link" href="#!/home" ng-click="toggleMenu()">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#!/home">Home</a>
+                    </li>
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Products'}">
+                        <a class="nav-link" href="#!/products">Product</span></a>
                     </li>
                 </ul>
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2" ng-click="goTo('sign-in')">Sign In</button>
+                    <button type="button" class="btn btn-warning" ng-click="goTo('sign-up')">Sign-up</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -57,11 +64,7 @@
 
 <footer class="footer bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <span class="muted">{{ sessionS.context.appName }} - {{ sessionS.context.appDescription }}</span>
-            </div>
-        </div>
+        <p class="text-center">&copy; {{ sessionS.context.appName }}</p>
     </div>
 </footer>
 
@@ -94,6 +97,11 @@
 <script src="modules_manual/wyd_angular/wydControlers.js"></script>
 <script src="modules_manual/wyd_angular/wydNotifyByNgNotify.js"></script>
 <script src="app/appCommon.js"></script>
+
+<script src="app/controllers/homeController.js"></script>
+<script src="app/controllers/signInController.js"></script>
+<script src="app/controllers/signOutController.js"></script>
+
 <script src="app/appMain.js"></script>
 
 </body>
