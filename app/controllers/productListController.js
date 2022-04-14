@@ -11,11 +11,12 @@ function productListController($log, $rootScope, $scope, wydNotifyService, sessi
     };
 
     vm.add = function() {
-        vm.item = { id : 0, unit: 1 };
+        vm.item = { unit: 1 };
     };
 
     vm.edit = function(item) {
         sessionService.getProduct(item.id).then(function(res) {
+            console.log(res);
             if( res.status === 200) {
                 vm.item = res.data;
                 // wydNotifyService.showSuccess('fetched successfully...');
@@ -27,8 +28,10 @@ function productListController($log, $rootScope, $scope, wydNotifyService, sessi
 
     vm.remove = function(item) {
         sessionService.removeProduct(item.id).then(function(res) {
-            if( res.status === 200) {
-                vm.items = res.data;
+            console.log(res);
+            if( res.status === 204) {
+                vm.refresh();
+                if(vm.item.id === item.id) vm.add();
                 wydNotifyService.showSuccess('removed successfully...');
             } else {
                 wydNotifyService.showError('remove failed...');
@@ -65,12 +68,13 @@ function productListController($log, $rootScope, $scope, wydNotifyService, sessi
             return;
         }
         console.log(vm.item);
-        if (vm.item.id === 0) {
+        if (!vm.item.id) {
             sessionService.addProduct(vm.item).then(function(res) {
                 console.log(res);
-                if( res.status === 200) {
-                    vm.items = res.data;
+                if( res.status === 201) {
+                    vm.refresh();
                     wydNotifyService.showSuccess('added successfully...');
+                    vm.add();
                 } else {
                     wydNotifyService.showError('add failed...');
                 }
@@ -78,9 +82,10 @@ function productListController($log, $rootScope, $scope, wydNotifyService, sessi
         } else {
             sessionService.setProduct(vm.item).then(function(res) {
                 console.log(res);
-                if( res.status === 204) {
+                if( res.status === 200) {
                     vm.refresh();
                     wydNotifyService.showSuccess('updated successfully...');
+                    vm.add();
                 } else {
                     wydNotifyService.showError('update failed...');
                 }

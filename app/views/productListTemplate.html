@@ -43,7 +43,7 @@
                        ng-model="vm.item.code"
                        wyd-focus-on="itemCode"
                        ng-required="true"
-                       ng-readonly="vm.item.id !== 0">
+                       ng-readonly="(vm.item.id)">
                 <div ng-messages="form0.itemCode.$error" role="alert" class="invalid-feedback">
                     <div ng-message="required">
                         This is required.
@@ -67,8 +67,7 @@
                 <input id="itemUnit" name="itemUnit" class="form-control" placeholder="Unit" type="text"
                        ng-model="vm.item.unit"
                        wyd-focus-on="itemUnit"
-                       ng-required="true"
-                       ng-readonly="true">
+                       ng-required="true">
                 <div ng-messages="form0.itemUnit.$error" role="alert" class="invalid-feedback">
                     <div ng-message="required">
                         This is required.

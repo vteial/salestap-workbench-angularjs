@@ -27,17 +27,42 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent" uib-collapse="isCollapsed">
-                <ul class="navbar-nav mr-auto">
+                <!--
+                <ul class="navbar-nav mr-auto" ng-if="sessionS.context.userId === null">
                     <li class="nav-item" ng-class="{'active' : viewName == 'Home'}">
-                        <a class="nav-link" href="#!/home">Home</a>
-                    </li>
-                    <li class="nav-item" ng-class="{'active' : viewName == 'Products'}">
-                        <a class="nav-link" href="#!/products">Product</span></a>
+                        <a class="nav-link" href="#!/home" ng-click="toggleMenu()">Home <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2" ng-click="goTo('sign-in')">Sign In</button>
-                    <button type="button" class="btn btn-warning" ng-click="goTo('sign-up')">Sign-up</button>
+                -->
+                <ul class="navbar-nav me-auto" xng-if="sessionS.context.userId !== null">
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Home'}">
+                        <a class="nav-link" href="#!/home" ng-click="toggleMenu()">
+                            <i class="fa fa-home px-1"></i> Home <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Sell'}">
+                        <a class="nav-link" href="#!/products" ng-click="toggleMenu()">Products</a>
+                    </li>
+                </ul>
+                <!--
+                <ul class="navbar-nav me-auto" xng-if="sessionS.context.userId === null">
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Sign In'}">
+                        <a class="nav-link" href="#!/sign-in" ng-click="toggleMenu()">
+                            <i class="fa fa-sign-in px-1"></i> Sign In</a>
+                    </li>
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Sign Up'}">
+                        <a class="nav-link" href="#!/sign-up" ng-click="toggleMenu()">
+                            <i class="fa fa-sign-up px-1"></i> Sign Up</a>
+                    </li>
+                </ul>
+                -->
+                <div class="d-flex">
+                    <button type="button" class="btn btn-outline-light me-2" ng-click="goTo('/sign-in')">
+                        <i class="fa fa-sign-in"></i> Sign In
+                    </button>
+                    <button type="button" class="btn btn-warning" ng-click="goTo('/sign-up')">
+                        <i class="fa fa-sign-up"></i> Sign-up
+                    </button>
                 </div>
             </div>
         </div>
@@ -64,7 +89,7 @@
 
 <footer class="footer bg-light">
     <div class="container">
-        <p class="text-center">&copy; {{ sessionS.context.appName }}</p>
+        <p class="text-center my-2">&copy; 2022 {{ sessionS.context.appName }}</p>
     </div>
 </footer>
 
@@ -99,6 +124,7 @@
 <script src="app/appCommon.js"></script>
 
 <script src="app/controllers/homeController.js"></script>
+<script src="app/controllers/productListController.js"></script>
 <script src="app/controllers/signInController.js"></script>
 <script src="app/controllers/signOutController.js"></script>
 

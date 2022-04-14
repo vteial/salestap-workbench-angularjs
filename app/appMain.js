@@ -94,7 +94,7 @@ function appService($log, $http, $q, $rootScope, wydNotifyService) {
 }
 appServices.factory('sessionService', appService);
 
-function rootController($log, $rootScope, $scope, sessionService, $window, $location) {
+function rootController($log, $rootScope, $scope, $location, sessionService, $window, $location) {
     var cmpId = 'rootController', cmpName = '-';
     $rootScope.viewName = cmpName;
     $log.debug(cmpId + '...');
@@ -115,6 +115,10 @@ function rootController($log, $rootScope, $scope, sessionService, $window, $loca
     $scope.toggleMenu = function () {
         $scope.isCollapsed = !$scope.isCollapsed;
     };
+
+    $scope.goTo = function(path) {
+        $location.path(path);
+    }
 }
 appControllers.controller('rootController', rootController);
 
@@ -150,10 +154,10 @@ function appConfig($routeProvider, $locationProvider, ) {
         controller: 'productListController as vm'
     });
     $routeProvider.when('/sign-in', {
-        templateUrl: 'app/views/singInTemplate.html',
+        templateUrl: 'app/views/signInTemplate.html',
         controller: 'signInController as vm'
     });
-    $routeProvider.when('/sign-out', {
+    $routeProvider.when('/sign-up', {
         templateUrl: 'app/views/signOutTemplate.html',
         controller: 'signOutController as vm'
     });
