@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workbench AngularJS</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-block-ui/0.2.2/angular-block-ui.css" integrity="sha512-C7fqtTIPO5qVivHn7T7+hLkYjd0ue3Ccznk0dSmH2E7si1A7tpxj4qYr7eIOFOSeFhdSmlMt5m3hIQcQ8dLM5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ng-notify/0.8.0/ng-notify.min.css" integrity="sha512-dpccB1L2LuagS0F33VZu9Dp3BiVLmW27fw13ekUZBxFcK0H8NYLqtGTAktJE/S63ovi+g5Ijs/v3+4TQWsV3Og==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="assets/styles.css">
+
+</head>
+<body class="d-flex flex-column h-100" ng-controller="rootController" ng-cloak>
+
+<header class="fixed-top bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">{{ sessionS.context.appName }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    ng-click="isCollapsed = !isCollapsed">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" uib-collapse="isCollapsed">
+                <ul class="navbar-nav mr-auto" ng-if="sessionS.context.userId === null">
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Home'}">
+                        <a class="nav-link" href="#!/home" ng-click="toggleMenu()">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row my-1">
+            <div class="col-md-4">
+                <strong>{{viewName}}</strong>
+            </div>
+        </div>
+    </div>
+</header>
+
+<hr class="hr my-0"/>
+
+<main role="main" class="container flex-shrink-0">
+    <br/>
+    <div class=".d-none .d-sm-block .d-md-none">&nbsp;</div>
+    <div ng-view></div>
+    <br/>
+</main>
+
+<hr class="hr my-0"/>
+
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <span class="muted">{{ sessionS.context.appName }} - {{ sessionS.context.appDescription }}</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.8.2/angular-messages.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-aria/1.8.2/angular-aria.min.js" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.min.js" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js" integrity="sha512-/uxeq6VcJ+do+PtGgWZwRL/Z63r53cK6yek3NzvQwce6aCeheKRD59IuRsEFuNU8b0B/lZ6fUx1fncf0wMIm5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js" integrity="sha512-PIisRT8mFfdxx99gMs7WAY5Gp+CtjYYxKvF93w8yWAvX548UBNADHu7Qkavgr6yRG+asocqfuk5crjNd5z9s6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngclipboard/2.0.0/ngclipboard.min.js" integrity="sha512-7fOkUplsLgVIEGH1a+XVqxbzpKSzscbjMLMMOLC4jJLVueemmpu+z+wKh5dHR3Nhna/KMBuHp2E4vzGQ9wqNnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js" integrity="sha512-zdfH1XdRONkxXKLQxCI2Ak3c9wNymTiPh5cU4OsUavFDATDbUzLR+SYWWz0RkhDmBDT0gNSUe4xrQXx8D89JIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+<script src="modules_manual/angular-inputmask/src/green.inputmask4angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-block-ui/0.2.2/angular-block-ui.min.js" integrity="sha512-BtmFfLX4GDXx/BORg3Og/jeW93uBPBxmt8gFYHCC4RqvxxAQIQWSHHMWauXZ21YzKJUWjt6mtJ6e/8E808Becw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-notify/0.8.0/ng-notify.min.js" integrity="sha512-UZL4LMJDTkebnw+3f9lwEXVUyYwiKFpS8jPt6MftBIDbJnq58ol7GyIwfNSQSsyN0YOzZE0IzqSaH5GEyuw1Qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="modules_manual/ui-bootstrap/ui-bootstrap-tpls-3.0.6.min.js"></script>
+
+<script src="modules_manual/wyd_angular/wydInit.js"></script>
+<script src="modules_manual/wyd_angular/wydCommon.js"></script>
+<script src="modules_manual/wyd_angular/wydControlers.js"></script>
+<script src="modules_manual/wyd_angular/wydNotifyByNgNotify.js"></script>
+<script src="app/appCommon.js"></script>
+<script src="app/appMain.js"></script>
+
+</body>
+</html>
