@@ -5,6 +5,11 @@ function appService($log, $http, $q, $rootScope, wydNotifyService) {
         service.context = { userId : null };
         service.context.appName = 'Workbench AngularJS';
         service.context.appDescription = 'Workbench AngularJS';
+        service.keycloak = new Keycloak({
+           url: 'http://localhost:9999/auth/',
+           realm: 'salestap',
+           clientId: 'salestap-app',
+       });
     }
 
     function addOrUpdateCacheX(propName, objectx) {
@@ -32,6 +37,14 @@ function appService($log, $http, $q, $rootScope, wydNotifyService) {
     }
 
     function processItems(items) {}
+
+    service.signIn = function() {
+        service.keycloak.login();
+    }
+
+    service.signOut = function() {
+        service.keycloak.logout();
+    }
 
     service.getProducts = function () {
         var path = basePath + '/products';
@@ -119,6 +132,22 @@ function rootController($log, $rootScope, $scope, $location, sessionService, $wi
     $scope.goTo = function(path) {
         $location.path(path);
     }
+
+    $scope.signOut = sessionService.signOut;
+
+    sessionService.keycloak.init({
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html'
+    }).then(function(authenticated) {
+        console.log('isAuthenticated : ' + (authenticated ? 'authenticated' : 'not authenticated'));
+        if(!authenticated) sessionService.signIn();
+        else {
+            sessionService.keycloak.loadUserProfile();
+        }
+    }).catch(function(exp) {
+        console.log(exp);
+        console.log('Keycloak failed to initialize...');
+    });
 }
 appControllers.controller('rootController', rootController);
 
@@ -177,6 +206,7 @@ app.config(appConfig);
 
 function appInit($rootScope, $location, $sessionStorage) {
     console.log('initialization started...');
+    console.log(window.location.href);
     console.log('initialization finished...');
 }
 app.run(['$rootScope', '$location', '$sessionStorage', appInit]);

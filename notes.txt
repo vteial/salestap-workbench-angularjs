@@ -1,0 +1,5 @@
+
+git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/blocktrust-marketplace-admin-ui
+
+kamil@agnitechnologies.com
+!Agnitech2vt#

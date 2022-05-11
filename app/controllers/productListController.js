@@ -93,9 +93,11 @@ function productListController($log, $rootScope, $scope, wydNotifyService, sessi
         }
     }
 
-    vm.refresh();
+    //vm.refresh();
     vm.add();
     $log.debug(cmpId + ' finished...');
 }
 productListController.$inject = ['$log', '$rootScope', '$scope', 'wydNotifyService', 'sessionService', 'wydFocusService'];
 appControllers.controller('productListController', productListController);
+
+// http://localhost:9999/realms/workbench/protocol/openid-connect/auth?client_id=workbench-app&redirect_uri=https://www.keycloak.org/app/#url=http://localhost:9999&realm=workbench&client=workbench-app&state=2fb94028-4eac-446b-bd5b-5e9dea92e82d&response_mode=fragment&response_type=code&scope=openid&nonce=61970d96-e34e-4de1-af78-a3940ada0491

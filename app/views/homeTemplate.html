@@ -1,2 +1,12 @@
-<br/>
 <h1>Welcome!</h1>
+<br/>
+<div class="row">
+    <div class="col-6">
+        <h3>Keycloak Info</h3><hr/>
+        <pre>{{ vm.keycloak | json }}</pre>
+    </div>
+    <div class="col-6">
+        <h3>User Info</h3><hr/>
+        <pre>{{ vm.keycloak.profile | json }}</pre>
+    </div>
+</div>

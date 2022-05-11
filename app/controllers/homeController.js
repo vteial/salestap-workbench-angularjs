@@ -3,6 +3,9 @@ function homeController($log, $rootScope, $scope, wydNotifyService, sessionServi
     $rootScope.viewName = cmpName;
     $log.debug(cmpId + ' started...');
 
+    vm.keycloak = sessionService.keycloak;
+    vm.userProfile = sessionService.userProfile;
+
     $log.debug(cmpId + ' finished...');
 }
 homeController.$inject = ['$log', '$rootScope', '$scope', 'wydNotifyService', 'sessionService', 'wydFocusService'];

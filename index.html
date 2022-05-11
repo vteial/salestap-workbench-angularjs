@@ -40,7 +40,7 @@
                             <i class="fa fa-home px-1"></i> Home <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item" ng-class="{'active' : viewName == 'Sell'}">
+                    <li class="nav-item" ng-class="{'active' : viewName == 'Products'}">
                         <a class="nav-link" href="#!/products" ng-click="toggleMenu()">Products</a>
                     </li>
                 </ul>
@@ -57,11 +57,8 @@
                 </ul>
                 -->
                 <div class="d-flex">
-                    <button type="button" class="btn btn-outline-light me-2" ng-click="goTo('/sign-in')">
-                        <i class="fa fa-sign-in"></i> Sign In
-                    </button>
-                    <button type="button" class="btn btn-warning" ng-click="goTo('/sign-up')">
-                        <i class="fa fa-sign-up"></i> Sign-up
+                    <button type="button" class="btn btn-warning me-2" ng-click="signOut()">
+                        <i class="fa fa-sign-out"></i> Sign Out
                     </button>
                 </div>
             </div>
@@ -116,7 +113,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-block-ui/0.2.2/angular-block-ui.min.js" integrity="sha512-BtmFfLX4GDXx/BORg3Og/jeW93uBPBxmt8gFYHCC4RqvxxAQIQWSHHMWauXZ21YzKJUWjt6mtJ6e/8E808Becw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-notify/0.8.0/ng-notify.min.js" integrity="sha512-UZL4LMJDTkebnw+3f9lwEXVUyYwiKFpS8jPt6MftBIDbJnq58ol7GyIwfNSQSsyN0YOzZE0IzqSaH5GEyuw1Qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="modules_manual/ui-bootstrap/ui-bootstrap-tpls-3.0.6.min.js"></script>
-
+<script src="assets/kc/keycloak.js"></script>
+<!--
+<script src="http://localhost:9999/auth/js/keycloak.js"></script>
+-->
 <script src="modules_manual/wyd_angular/wydInit.js"></script>
 <script src="modules_manual/wyd_angular/wydCommon.js"></script>
 <script src="modules_manual/wyd_angular/wydControlers.js"></script>
